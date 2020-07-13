@@ -94,6 +94,7 @@ FV_NUM_BATCHES?=1
 # (with FV_NUM_BATCHES=1) to check that it's not a flake.
 FV_BATCHES_TO_RUN?=$(shell seq $(FV_NUM_BATCHES))
 FV_SLOW_SPEC_THRESH=90
+FV_RACE_DETECTOR_ENABLED?=false
 
 # Linker flags for building Felix.
 #
@@ -169,6 +170,20 @@ bin/calico-felix-$(ARCH): $(SRC_FILES) $(LOCAL_BUILD_DEP)
 	     sh -c 'go build -v -i -o $@ -v $(BUILD_FLAGS) $(LDFLAGS) "$(PACKAGE_NAME)/cmd/calico-felix"'; \
 	fi
 
+bin/crash-repro: $(SRC_FILES) $(LOCAL_BUILD_DEP)
+	@echo Building crash-repro
+	mkdir -p bin
+	$(DOCKER_GO_BUILD_CGO) \
+	  sh -c 'go build -race -v -i -o $@ -v $(BUILD_FLAGS) $(LDFLAGS) "$(PACKAGE_NAME)/cmd/crash-repro"';
+
+bin/calico-felix-race-$(ARCH): $(SRC_FILES) $(LOCAL_BUILD_DEP)
+	@echo Building felix with race detector enabled for $(ARCH) on $(BUILDARCH)
+	mkdir -p bin
+	if [ "$(SEMAPHORE)" != "true" -o ! -e $@ ] ; then \
+	  $(DOCKER_GO_BUILD_CGO) \
+	     sh -c 'go build -v -race -i -o $@ -v $(BUILD_FLAGS) $(LDFLAGS) "$(PACKAGE_NAME)/cmd/calico-felix"'; \
+	fi
+
 # Generate the protobuf bindings for go. The proto/felixbackend.pb.go file is included in SRC_FILES
 protobuf proto/felixbackend.pb.go: proto/felixbackend.proto
 	docker run --rm --user $(LOCAL_USER_ID):$(LOCAL_GROUP_ID) \
@@ -238,8 +253,14 @@ ifeq ($(ARCH),amd64)
 	docker tag $(BUILD_IMAGE):latest-$(ARCH) $(BUILD_IMAGE):latest
 endif
 
-image-test: image fv/Dockerfile.test.amd64 bin/pktgen bin/test-workload bin/test-connection image-wgtool
-	docker build -t $(BUILD_IMAGE)-test:latest-$(ARCH) --build-arg QEMU_IMAGE=$(CALICO_BUILD) --file ./fv/Dockerfile.test.$(ARCH) bin;
+ifeq ($(FV_RACE_DETECTOR_ENABLED),true)
+FV_BINARY=calico-felix-race-amd64
+else
+FV_BINARY=calico-felix-amd64
+endif
+
+image-test: image fv/Dockerfile.test.amd64 bin/pktgen bin/test-workload bin/test-connection bin/$(FV_BINARY) image-wgtool
+	docker build -t $(BUILD_IMAGE)-test:latest-$(ARCH) --build-arg FV_BINARY=$(FV_BINARY) --file ./fv/Dockerfile.test.$(ARCH) bin;
 ifeq ($(ARCH),amd64)
 	docker tag $(BUILD_IMAGE)-test:latest-$(ARCH) $(BUILD_IMAGE)-test:latest
 endif
@@ -384,7 +405,8 @@ fv/infrastructure/crds: go.mod go.sum $(LOCAL_BUILD_DEP)
 #	 ...
 #	 $(MAKE) fv FV_BATCHES_TO_RUN="10" FV_NUM_BATCHES=10    # the tenth 1/10
 #	 etc.
-fv fv/latency.log: $(REMOTE_DEPS) image-test bin/iptables-locker bin/test-workload bin/test-connection bin/calico-bpf fv/fv.test
+fv fv/latency.log fv/data-races.log: $(REMOTE_DEPS) image-test bin/iptables-locker bin/test-workload bin/test-connection bin/calico-bpf fv/fv.test
+	rm -f fv/data-races.log fv/latency.log
 	cd fv && \
 	  FV_FELIXIMAGE=$(FV_FELIXIMAGE) \
 	  FV_ETCDIMAGE=$(FV_ETCDIMAGE) \
@@ -396,6 +418,7 @@ fv fv/latency.log: $(REMOTE_DEPS) image-test bin/iptables-locker bin/test-worklo
 	  GINKGO_ARGS='$(GINKGO_ARGS)' \
 	  GINKGO_FOCUS="$(GINKGO_FOCUS)" \
 	  FELIX_FV_ENABLE_BPF="$(FELIX_FV_ENABLE_BPF)" \
+	  FV_RACE_DETECTOR_ENABLED=$(FV_RACE_DETECTOR_ENABLED) \
 	  ./run-batches
 	@if [ -e fv/latency.log ]; then \
 	   echo; \
