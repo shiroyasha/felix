@@ -7,7 +7,7 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: 'Multi-arch builds, UT, k8sfv-tests'
+  - name: 'Multi-arch builds, UT, k8sfv-tests 1'
     task:
       prologue:
         commands:
@@ -19,7 +19,7 @@ blocks:
           parallelism: 40
           commands:
             - make ci EXCEPT=fv
-  - name: 'Multi-arch builds, UT, k8sfv-tests'
+  - name: 'Multi-arch builds, UT, k8sfv-tests 2'
     task:
       prologue:
         commands:
@@ -31,7 +31,7 @@ blocks:
           parallelism: 40
           commands:
             - make ci EXCEPT=fv
-  - name: 'Multi-arch builds, UT, k8sfv-tests'
+  - name: 'Multi-arch builds, UT, k8sfv-tests 3'
     task:
       prologue:
         commands:
@@ -43,7 +43,7 @@ blocks:
           parallelism: 40
           commands:
             - make ci EXCEPT=fv
-  - name: 'Multi-arch builds, UT, k8sfv-tests'
+  - name: 'Multi-arch builds, UT, k8sfv-tests 4'
     task:
       prologue:
         commands:
@@ -55,7 +55,7 @@ blocks:
           parallelism: 40
           commands:
             - make ci EXCEPT=fv
-  - name: 'Multi-arch builds, UT, k8sfv-tests'
+  - name: 'Multi-arch builds, UT, k8sfv-tests 5'
     task:
       prologue:
         commands:
