@@ -1,24 +1,69 @@
 version: v1.0
 name: Felix
-
 execution_time_limit:
   minutes: 3
-
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
-
 blocks:
-- name: Multi-arch builds, UT, k8sfv-tests
-  task:
-    prologue:
-      commands:
-      - checkout
-      - cache restore go-pkg-cache
-      - cache restore go-mod-cache
-    jobs:
-    - name: CI excluding FV
-      parallelism: 40
-      commands:
-      - make ci EXCEPT=fv
+  - name: 'Multi-arch builds, UT, k8sfv-tests'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore go-pkg-cache
+          - cache restore go-mod-cache
+      jobs:
+        - name: CI excluding FV
+          parallelism: 40
+          commands:
+            - make ci EXCEPT=fv
+  - name: 'Multi-arch builds, UT, k8sfv-tests'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore go-pkg-cache
+          - cache restore go-mod-cache
+      jobs:
+        - name: CI excluding FV
+          parallelism: 40
+          commands:
+            - make ci EXCEPT=fv
+  - name: 'Multi-arch builds, UT, k8sfv-tests'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore go-pkg-cache
+          - cache restore go-mod-cache
+      jobs:
+        - name: CI excluding FV
+          parallelism: 40
+          commands:
+            - make ci EXCEPT=fv
+  - name: 'Multi-arch builds, UT, k8sfv-tests'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore go-pkg-cache
+          - cache restore go-mod-cache
+      jobs:
+        - name: CI excluding FV
+          parallelism: 40
+          commands:
+            - make ci EXCEPT=fv
+  - name: 'Multi-arch builds, UT, k8sfv-tests'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore go-pkg-cache
+          - cache restore go-mod-cache
+      jobs:
+        - name: CI excluding FV
+          parallelism: 40
+          commands:
+            - make ci EXCEPT=fv
