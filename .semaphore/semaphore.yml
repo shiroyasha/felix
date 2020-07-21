@@ -2,7 +2,7 @@ version: v1.0
 name: Felix
 
 execution_time_limit:
-  hours: 2
+  minutes: 3
 
 agent:
   machine:
@@ -19,6 +19,6 @@ blocks:
       - cache restore go-mod-cache
     jobs:
     - name: CI excluding FV
-      parallelism: 5
+      parallelism: 40
       commands:
       - make ci EXCEPT=fv
