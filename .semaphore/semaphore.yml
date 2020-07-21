@@ -19,6 +19,6 @@ blocks:
       - cache restore go-mod-cache
     jobs:
     - name: CI excluding FV
-      paralelism: 5
+      parallelism: 5
       commands:
       - make ci EXCEPT=fv
