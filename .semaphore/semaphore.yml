@@ -15,6 +15,18 @@ blocks:
           - checkout
       jobs:
         - name: CI excluding FV
-          parallelism: 1
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 2'
+    dependencies: []
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
           commands:
             - bash run.sh
