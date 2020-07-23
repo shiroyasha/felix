@@ -1,5 +1,3 @@
-sudo tune2fs -e continue /dev/mapper/semaphore--vm--vg-root
-
 BUILDARCH=$(uname -m)
 BUILDOS=$(uname -s | tr A-Z a-z)
 GOMOD_CACHE="$HOME/go/pkg/mod"
@@ -11,17 +9,6 @@ GOFLAGS="-mod=readonly"
 mkdir -p .go-pkg-cache bin $GOMOD_CACHE
 
 docker pull "calico/go-build:v0.40"
-
-echo "=========================================="
-echo "=========================================="
-echo "=========================================="
-echo "Running FSCK"
-sudo fsck -n /dev/mapper/semaphore--vm--vg-root
-
-echo "=========================================="
-echo "=========================================="
-echo "=========================================="
-echo "Running Go get"
 
 docker run --rm \
   --net=host \
@@ -39,10 +26,3 @@ docker run --rm \
   -w /go/src/$PACKAGE_NAME \
   "calico/go-build:v0.40" \
   sh -c 'go mod download'
-
-echo "=========================================="
-echo "=========================================="
-echo "=========================================="
-echo "Running FSCK"
-
-sudo fsck -n /dev/mapper/semaphore--vm--vg-root
