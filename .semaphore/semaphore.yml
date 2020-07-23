@@ -17,4 +17,4 @@ blocks:
         - name: CI excluding FV
           parallelism: 1
           commands:
-            - run.sh
+            - bash run.sh
