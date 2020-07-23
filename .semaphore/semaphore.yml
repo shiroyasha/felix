@@ -8,38 +8,14 @@ agent:
     os_image: ubuntu1804
 blocks:
   - name: 'Multi-arch builds, UT, k8sfv-tests 1'
+    dependencies: []
     task:
       prologue:
         commands:
-          - sudo tune2fs -m 5 /dev/mapper/semaphore--vm--vg-root
           - checkout
-          - cache restore go-pkg-cache
-          - cache restore go-mod-cache
+          - sem-version go 1.12
       jobs:
         - name: CI excluding FV
           parallelism: 50
           commands:
-            - make ci EXCEPT=fv
-      epilogue:
-        always:
-          commands:
-            - echo "here" > /tmp/system-metrics
-    dependencies: []
-  - name: 'Multi-arch builds, UT, k8sfv-tests 2'
-    task:
-      prologue:
-        commands:
-          - sudo tune2fs -m 5 /dev/mapper/semaphore--vm--vg-root
-          - checkout
-          - cache restore go-pkg-cache
-          - cache restore go-mod-cache
-      jobs:
-        - name: CI excluding FV
-          parallelism: 50
-          commands:
-            - make ci EXCEPT=fv
-      epilogue:
-        always:
-          commands:
-            - echo "here" > /tmp/system-metrics
-    dependencies: []
+            - go get ./...
