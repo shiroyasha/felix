@@ -19,9 +19,6 @@ echo "=========================================="
 echo "Running FSCK"
 sudo fsck -n /dev/mapper/semaphore--vm--vg-root
 
-echo "Sleeping"
-sleep 40
-
 echo "=========================================="
 echo "=========================================="
 echo "=========================================="
@@ -43,7 +40,7 @@ docker run --rm \
   -w /go/src/$PACKAGE_NAME \
   --entrypoint /bin/bash \
   "calico/go-build:v0.40" \
-  'go mod download'
+  sh -c 'go mod download'
 
 echo "=========================================="
 echo "=========================================="
