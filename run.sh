@@ -1,3 +1,6 @@
+# echo '{ "debug": true }' | sudo tee -a /etc/docker/daemon.json
+# sudo service docker restart
+
 BUILDARCH=$(uname -m)
 BUILDOS=$(uname -s | tr A-Z a-z)
 GOMOD_CACHE="$HOME/go/pkg/mod"
@@ -38,8 +41,9 @@ docker run --rm \
   -v $(pwd):/go/src/$PACKAGE_NAME:rw \
   -v $(pwd)/.go-pkg-cache:/go-cache:rw \
   -w /go/src/$PACKAGE_NAME \
+  --entrypoint /bin/bash
   "calico/go-build:v0.40" \
-  sh -c 'go mod download'
+  'go mod download'
 
 echo "=========================================="
 echo "=========================================="
