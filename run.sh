@@ -37,9 +37,8 @@ docker run --rm \
   -v $(pwd):/go/src/$PACKAGE_NAME:rw \
   -v $(pwd)/.go-pkg-cache:/go-cache:rw \
   -w /go/src/$PACKAGE_NAME \
-  --entrypoint go \
   "calico/go-build:v0.40" \
-  mod download
+  sh -c 'echo "here"; dd if=/dev/urandom of=/go-cache/test bs=1024 count=5120000 conv=fsync'
 
 echo "=========================================="
 echo "=========================================="
