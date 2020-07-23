@@ -12,7 +12,6 @@ docker run --rm \
   --net=host \
   --init \
   -e GO111MODULE=on \
-  -v $GOMOD_CACHE:/go/pkg/mod:rw \
   -e LOCAL_USER_ID=$LOCAL_USER_ID \
   -e GOCACHE=/go-cache \
   -e GOARCH=$ARCH \
@@ -21,7 +20,6 @@ docker run --rm \
   -e GOOS=$BUILDOS \
   -e GOFLAGS=$GOFLAGS \
   -v $(pwd):/go/src/$PACKAGE_NAME:rw \
-  -v $(pwd)/.go-pkg-cache:/go-cache:rw \
   -w /go/src/$PACKAGE_NAME \
   "calico/go-build:v0.40" \
   sh -c 'go mod download'
