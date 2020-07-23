@@ -14,7 +14,7 @@ echo "=========================================="
 echo "=========================================="
 echo "=========================================="
 echo "Running FSCK"
-sudo fsck /dev/mapper/semaphore--vm--vg-root
+sudo fsck -n /dev/mapper/semaphore--vm--vg-root
 
 echo "=========================================="
 echo "=========================================="
@@ -43,4 +43,4 @@ echo "=========================================="
 echo "=========================================="
 echo "Running FSCK"
 
-sudo fsck /dev/mapper/semaphore--vm--vg-root
+sudo fsck -n /dev/mapper/semaphore--vm--vg-root
