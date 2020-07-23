@@ -13,9 +13,8 @@ blocks:
       prologue:
         commands:
           - checkout
-          - sem-version go 1.13
       jobs:
         - name: CI excluding FV
-          parallelism: 50
+          parallelism: 1
           commands:
-            - go get ./... || true
+            - run.sh
