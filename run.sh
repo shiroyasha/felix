@@ -17,7 +17,7 @@ echo "Running FSCK"
 sudo fsck -n /dev/mapper/semaphore--vm--vg-root
 
 echo "Sleeping"
-sleep 10
+sleep 40
 
 echo "=========================================="
 echo "=========================================="
