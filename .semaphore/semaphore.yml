@@ -23,6 +23,7 @@ blocks:
         always:
           commands:
             - echo "here" > /tmp/system-metrics
+    dependencies: []
   - name: 'Multi-arch builds, UT, k8sfv-tests 2'
     task:
       prologue:
@@ -39,3 +40,4 @@ blocks:
         always:
           commands:
             - echo "here" > /tmp/system-metrics
+    dependencies: []
