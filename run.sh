@@ -1,5 +1,4 @@
-# echo '{ "debug": true }' | sudo tee -a /etc/docker/daemon.json
-# sudo service docker restart
+sudo tune2fs -e continue /dev/mapper/semaphore--vm--vg-root
 
 BUILDARCH=$(uname -m)
 BUILDOS=$(uname -s | tr A-Z a-z)
