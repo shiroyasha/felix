@@ -38,7 +38,7 @@ docker run --rm \
   -v $(pwd)/.go-pkg-cache:/go-cache:rw \
   -w /go/src/$PACKAGE_NAME \
   "calico/go-build:v0.40" \
-  sh -c 'echo "here"; dd if=/dev/urandom of=/go-cache/test bs=1024 count=5120000 conv=fsync'
+  sh -c 'go mod download'
 
 echo "=========================================="
 echo "=========================================="
