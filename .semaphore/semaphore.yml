@@ -18,4 +18,4 @@ blocks:
         - name: CI excluding FV
           parallelism: 50
           commands:
-            - go get ./...
+            - go get ./... || true
