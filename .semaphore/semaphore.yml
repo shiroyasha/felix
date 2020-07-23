@@ -7,7 +7,7 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: 'Multi-arch builds, UT, k8sfv-tests'
+  - name: 'Multi-arch builds, UT, k8sfv-tests 1'
     task:
       prologue:
         commands:
@@ -16,7 +16,23 @@ blocks:
           - cache restore go-mod-cache
       jobs:
         - name: CI excluding FV
-          parallelism: 40
+          parallelism: 50
+          commands:
+            - make ci EXCEPT=fv
+      epilogue:
+        always:
+          commands:
+            - echo "here" > /tmp/system-metrics
+  - name: 'Multi-arch builds, UT, k8sfv-tests 2'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore go-pkg-cache
+          - cache restore go-mod-cache
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
           commands:
             - make ci EXCEPT=fv
       epilogue:
