@@ -22,6 +22,6 @@ docker run --rm \
   -e GOFLAGS=$GOFLAGS \
   -v $(pwd):/go/src/$PACKAGE_NAME:rw \
   -v $(pwd)/.go-pkg-cache:/go-cache:rw \
-  -w /go/src/$PACKAGE_NAME
-  "calico/go-build:v0.40"
+  -w /go/src/$PACKAGE_NAME \
+  "calico/go-build:v0.40" \
   sh -c 'go mod download'
