@@ -11,6 +11,7 @@ blocks:
     task:
       prologue:
         commands:
+          - sudo tune2fs -m 5 /dev/mapper/semaphore--vm--vg-root
           - checkout
           - cache restore go-pkg-cache
           - cache restore go-mod-cache
@@ -28,6 +29,7 @@ blocks:
     task:
       prologue:
         commands:
+          - sudo tune2fs -m 5 /dev/mapper/semaphore--vm--vg-root
           - checkout
           - cache restore go-pkg-cache
           - cache restore go-mod-cache
