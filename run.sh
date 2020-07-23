@@ -8,6 +8,19 @@ GOFLAGS="-mod=readonly"
 
 mkdir -p .go-pkg-cache bin $GOMOD_CACHE
 
+docker pull "calico/go-build:v0.40"
+
+echo "=========================================="
+echo "=========================================="
+echo "=========================================="
+echo "Running FSCK"
+sudo fsck /dev/mapper/semaphore--vm--vg-root
+
+echo "=========================================="
+echo "=========================================="
+echo "=========================================="
+echo "Running Go get"
+
 docker run --rm \
   --net=host \
   --init \
@@ -20,6 +33,14 @@ docker run --rm \
   -e GOOS=$BUILDOS \
   -e GOFLAGS=$GOFLAGS \
   -v $(pwd):/go/src/$PACKAGE_NAME:rw \
+  -v $(pwd)/.go-pkg-cache:/go-cache:rw \
   -w /go/src/$PACKAGE_NAME \
   "calico/go-build:v0.40" \
   sh -c 'go mod download'
+
+echo "=========================================="
+echo "=========================================="
+echo "=========================================="
+echo "Running FSCK"
+
+sudo fsck /dev/mapper/semaphore--vm--vg-root
