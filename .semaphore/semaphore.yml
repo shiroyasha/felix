@@ -1,53 +1,16 @@
 version: v1.0
 name: Felix
+
 execution_time_limit:
   minutes: 3
+
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
+
 blocks:
   - name: 'Multi-arch builds, UT, k8sfv-tests 1'
-    task:
-      prologue:
-        commands:
-          - checkout
-      jobs:
-        - name: CI excluding FV
-          parallelism: 50
-          commands:
-            - bash run.sh
-  - name: 'Multi-arch builds, UT, k8sfv-tests 2'
-    task:
-      prologue:
-        commands:
-          - checkout
-      jobs:
-        - name: CI excluding FV
-          parallelism: 50
-          commands:
-            - bash run.sh
-  - name: 'Multi-arch builds, UT, k8sfv-tests 3'
-    task:
-      prologue:
-        commands:
-          - checkout
-      jobs:
-        - name: CI excluding FV
-          parallelism: 50
-          commands:
-            - bash run.sh
-  - name: 'Multi-arch builds, UT, k8sfv-tests 4'
-    task:
-      prologue:
-        commands:
-          - checkout
-      jobs:
-        - name: CI excluding FV
-          parallelism: 50
-          commands:
-            - bash run.sh
-  - name: 'Multi-arch builds, UT, k8sfv-tests 5'
     task:
       prologue:
         commands:

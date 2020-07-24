@@ -1,4 +1,3 @@
-
 BUILDARCH=$(uname -m)
 BUILDOS=$(uname -s | tr A-Z a-z)
 GOMOD_CACHE="$HOME/go/pkg/mod"
@@ -25,5 +24,5 @@ docker run --rm \
   -v $(pwd):/go/src/$PACKAGE_NAME:rw \
   -v $(pwd)/.go-pkg-cache:/go-cache:rw \
   -w /go/src/$PACKAGE_NAME \
-  "golang:1.13.7" \
+  "calico/go-build:v0.40" \
   sh -c 'go mod download'
