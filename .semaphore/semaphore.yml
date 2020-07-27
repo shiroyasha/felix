@@ -20,3 +20,47 @@ blocks:
           parallelism: 50
           commands:
             - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 2'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 3'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 4'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 5'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
