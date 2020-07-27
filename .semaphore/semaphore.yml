@@ -2,7 +2,7 @@ version: v1.0
 name: Felix
 
 execution_time_limit:
-  minutes: 3
+  minutes: 30
 
 agent:
   machine:
