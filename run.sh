@@ -1,4 +1,4 @@
-sudo apt-get remove --purge docker-ce docker-ce-cli
+sudo apt-get remove -y --purge docker-ce docker-ce-cli
 sudo apt-get install -y docker-ce=5:19.03.11~3-0~ubuntu-bionic docker-ce-cli=5:19.03.11~3-0~ubuntu-bionic
 
 BUILDARCH=$(uname -m)
