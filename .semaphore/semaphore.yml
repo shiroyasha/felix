@@ -17,5 +17,6 @@ blocks:
           - checkout
       jobs:
         - name: CI excluding FV
+          paralellism: 10
           commands:
             - bash run.sh
