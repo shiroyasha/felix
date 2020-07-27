@@ -19,7 +19,8 @@ blocks:
         - name: CI excluding FV
           parallelism: 50
           commands:
-            - bash run.sh
+            - sem-version go 1.13
+            - go mod download
 
   - name: 'Multi-arch builds, UT, k8sfv-tests 2'
     task:
@@ -30,7 +31,8 @@ blocks:
         - name: CI excluding FV
           parallelism: 50
           commands:
-            - bash run.sh
+            - sem-version go 1.13
+            - go mod download
 
   - name: 'Multi-arch builds, UT, k8sfv-tests 3'
     task:
@@ -41,7 +43,8 @@ blocks:
         - name: CI excluding FV
           parallelism: 50
           commands:
-            - bash run.sh
+            - sem-version go 1.13
+            - go mod download
 
   - name: 'Multi-arch builds, UT, k8sfv-tests 4'
     task:
@@ -52,7 +55,8 @@ blocks:
         - name: CI excluding FV
           parallelism: 50
           commands:
-            - bash run.sh
+            - sem-version go 1.13
+            - go mod download
 
   - name: 'Multi-arch builds, UT, k8sfv-tests 5'
     task:
@@ -63,4 +67,5 @@ blocks:
         - name: CI excluding FV
           parallelism: 50
           commands:
-            - bash run.sh
+            - sem-version go 1.13
+            - go mod download
