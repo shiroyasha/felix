@@ -1,9 +1,6 @@
 version: v1.0
 name: Felix
 
-execution_time_limit:
-  minutes: 30
-
 agent:
   machine:
     type: e1-standard-2
@@ -55,6 +52,171 @@ blocks:
             - bash run.sh
 
   - name: 'Multi-arch builds, UT, k8sfv-tests 5'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 6'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 7'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 8'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 9'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 10'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 11'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 12'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 13'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 14'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 15'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 16'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 17'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 18'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 19'
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: CI excluding FV
+          parallelism: 50
+          commands:
+            - bash run.sh
+
+  - name: 'Multi-arch builds, UT, k8sfv-tests 20'
     task:
       prologue:
         commands:
