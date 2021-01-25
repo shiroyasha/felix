@@ -14,8 +14,8 @@ daemon, Felix.
 ## Licensing
 
 Felix itself, along with most of Calico, is licensed under the Apache v2.0 license.  The BPF programs
-in the bpf-gpl directory are licensed under the GPL v2.0 for compatibility with Linux kernel helper 
-functions. 
+in the bpf-gpl directory are licensed under the GPL v2.0 for compatibility with Linux kernel helper
+functions.
 
 ## How can I get support for contributing to Project Calico?
 
@@ -43,7 +43,7 @@ your contribution.
 ## How do I build Felix?
 
 Felix mostly uses Docker for builds.  We develop on Ubuntu 16.04 but other
-Linux distributions should work (there are known `Makefile` issues that prevent building on OS X).  
+Linux distributions should work (there are known `Makefile` issues that prevent building on OS X).
 To build Felix, you will need:
 
 - A suitable linux box.
@@ -165,3 +165,4 @@ make deb
 make rpm
 ```
 The packages (and source packages) are output to the dist directory.
+
